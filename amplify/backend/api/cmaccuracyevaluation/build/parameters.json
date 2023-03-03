@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "cmaccuracyevaluation",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-amplify547c4efa9a0c4-staging-160341-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/39c48d07062aa3f00c1a44c3c0d2d9e28b87bafa"
+}

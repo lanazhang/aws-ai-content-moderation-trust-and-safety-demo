@@ -1,0 +1,12 @@
+{
+  "resourceName": "EvalBucket",
+  "policyUUID": "e0e07cbd",
+  "bucketName": "wwso-cm-accuracy-eval-us-east-1",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

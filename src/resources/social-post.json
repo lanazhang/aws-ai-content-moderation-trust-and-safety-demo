@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eaf093fc-86bc-43fe-90ce-c2ce8e0c9247",
+    "title": "Beyoncé & Jay-Z",
+    "text": "Beyoncé & Jay-Z",
+    "images": ["/images/fb_3.jpeg"],
+    "toxicity":0.742,
+    "labels": ["suggestive", "revealing cloth"],
+    "user": "Beyhive Madagascar",
+    "user_profile_image": "/images/profile_img_2.jpeg",
+    "created_ts": "2023-01-12 10:12:21",
+    "views": 134,
+    "likes": 31,
+    "comments": ["Love it.", "Happy family!"]
+  },
+    {
+      "id": "eaf093fc-86bc-43fe-90ce-c2ce8e0c9245",
+      "title": "Snoop Dogg & His Grand Daughter",
+      "text": "Snoop Dogg & His Grand Daughter",
+      "toxicity":0.02,
+      "images": ["/images/fb_2.jpeg"],
+      "labels": ["portrait", "hate speech"],
+      "user": "lanaz",
+      "user_profile_image": "/images/profile_img_1.jpeg",
+      "created_ts": "2023-01-10 21:12:21",
+      "views": 134,
+      "likes": 31,
+      "comments": ["Love it.", "Happy family!"]
+    },
+    {
+      "id": "eaf093fc-86bc-43fe-90ce-c2ce8e0c9246",
+      "title": "Kentucky Butter Cake   ...",
+      "text": "Kentucky Butter Cake 𝗜𝗻𝗴𝗿𝗲𝗱𝗶𝗲𝗻𝘁𝘀:1 cup butter, softened 2 cups sugar 4 large eggs, room temperature 2 teaspoon…",
+      "images": ["/images/fb_1.jpeg"],
+      "toxicity":0.342,
+      "labels": ["food","nudity"],
+      "user": "lanaz",
+      "user_profile_image": "/images/user_lanaz.jpeg",
+      "created_ts": "2023-01-12 10:12:21",
+      "views": 134,
+      "likes": 31,
+      "comments": ["Love it.", "Happy family!"]
+    },
+    {
+      "id": "eaf093fc-86bc-43fe-90ce-c2ce8e0c924",
+      "title": "For those wondering what's up with Cameron ...",
+      "text": "For those wondering what's up with Cameron Grimes, on today's Wrestling Observer it was revealed that Grimes is finished with NXT and will be going to the main roster. The hold up right now is that creative doesn't have a story for him right now.",
+      "images": ["/images/fb_4.jpeg"],
+      "toxicity":0.952,
+      "labels": ["suggestive", "bare chested male"],
+      "user": "WWE DYNAMITE",
+      "user_profile_image": "/images/profile_img_3.jpeg",
+      "created_ts": "2023-01-12 10:12:21",
+      "views": 134,
+      "likes": 31,
+      "comments": ["Love it.", "Happy family!"]
+    },
+    {
+      "id": "eaf093fc-86bc-43fe-90ce-c2ce8e0c9249",
+      "title": "Jake Paul takes first ring ...",
+      "text": "Jake Paul takes first ring defeat by split decision to Fury",
+      "images": ["/images/fb_5.jpeg"],
+      "toxicity":0.763,
+      "labels": ["suggestive","bare chested male"],
+      "user": "CP24",
+      "user_profile_image": "/images/profile_img_1.jpeg",
+      "created_ts": "2023-02-27 11:15:27",
+      "views": 134,
+      "likes": 31,
+      "comments": ["Love it.", "Happy family!"]
+    }
+  ]

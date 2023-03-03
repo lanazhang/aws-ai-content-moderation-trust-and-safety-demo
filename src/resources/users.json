@@ -1,0 +1,44 @@
+[
+    {
+      "user": "lanaz",
+      "post_count": 23,
+      "audio_count": 12,
+      "toxicity": 0.045
+    },    
+    {
+      "user": "supergamer001",
+      "post_count": 143,
+      "audio_count": 82,
+      "toxicity": 0.745
+    },
+    {
+      "user": "shit-head",
+      "post_count": 592,
+      "audio_count": 321,
+      "toxicity": 0.913
+    },
+    {
+      "user": "N0tail",
+      "post_count": 121,
+      "audio_count": 61,
+      "toxicity": 0.614
+    },
+    {
+      "user": "JerAx",
+      "post_count": 82,
+      "audio_count": 34,
+      "toxicity": 0.829
+    },
+    {
+      "user": "Ceb",
+      "post_count": 722,
+      "audio_count": 301,
+      "toxicity": 0.602
+    },
+    {
+      "user": "MinD_ContRol",
+      "post_count": 29,
+      "audio_count": 3,
+      "toxicity": 0.202
+    }
+  ]
