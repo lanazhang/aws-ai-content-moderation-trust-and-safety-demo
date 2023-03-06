@@ -16,7 +16,7 @@ import { appLayoutLabels, externalLinkProps } from '../../common/labels';
 import { getHeaderCounterText, getServerHeaderCounterText } from '../../common/tableCounterStrings';
 import { useNotifications } from './use-notifications';
 
-export const navHeader = { text: 'Trust & Safety demo', href: '#/' };
+export const navHeader = { text: 'UGC moderation', href: '#/' };
 export const navItems = [
   {
     type: 'section',

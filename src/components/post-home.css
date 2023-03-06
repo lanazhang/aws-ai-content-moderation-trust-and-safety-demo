@@ -3,10 +3,43 @@
     width: 100%;
     padding-bottom: 20px;
 }
-
 .post_home {
-    width: 75%;
     position: relative;
+}
+.post_left {
+    width: 65%;
+    position: relative;
+}
+.post_right{
+    position: absolute;
+    display: inline-block;
+    width: 32%;
+    margin-left:10px;
+    position: absolute;
+    right: 0%;
+    top: 40px;
+    border: solid 1px lightgray;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #0972d3;
+    color: white;
+}
+.post_right .header {
+    font-size: large;
+    font-weight: bold;
+}
+.post_right .item {
+    margin-top: 20px;
+    display: list-item;
+    margin-left: 20px;
+}
+.post_right .item .titile {
+    font-weight: bold;
+}
+.post_right .item .txt {
+    font-weight: normal;
+    color: white;
+    font-size: small;
 }
 
 .textarea {
@@ -21,7 +54,6 @@
     display: inline-block;
     border-radius: 50%;
     width: 50px;
-    padding-top: 10px;
 }
 .profile_name {
     display: inline-block;
@@ -33,6 +65,19 @@
 .post_text {
     font-size: 16px;
     padding-top:20px;
+    padding-bottom: 20px;
+}
+.more {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+}
+.more :hover {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 40px;
+    background-color: rgb(226, 226, 226);
 }
 .icon {
     display: inline-block;
@@ -65,7 +110,7 @@
 }
 
 .start_post {
-    border: lightgray 1px solid;
+    border: grey 1px solid;
     background-color: white;
     padding: 15px;
     padding-left:25px;
@@ -74,7 +119,7 @@
     display: inline-block;
     font-size: 16px;
     font-weight: bold;
-    color: gray;
+    color: grey;
     margin: 4px 2px;
     border-radius: 40px;
     width: 80%;
@@ -91,4 +136,59 @@
     display: block;
     background-color: rgb(226, 226, 226);
     cursor: pointer;
+}
+
+.comment_box {
+    display: block;
+    width: 100%;
+}
+
+.comment_box input{
+    display: inline-block;
+    padding: 10px;
+    padding-left:25px;
+    text-decoration: none;
+    font-size: 16px;
+    color: grey;
+    margin: 4px 2px;
+    border-radius: 40px;
+    border: grey solid 1px;
+    width: 70%;
+    vertical-align: top;
+    margin-top:15px;
+    margin-left:15px;
+}
+
+.comment_box button{
+    display: inline-block;
+    vertical-align: top;
+    margin-top:23px;
+    margin-left:15px;
+    padding-left:15px;
+    padding-right:15px;
+    border-radius: 40px;
+}
+
+.comment_box .comment_err {
+    display: block;
+    margin-left:80px;
+    width: 200px;
+    border: solid red 1px;
+    color:red;
+    padding-left: 20px;
+    background-color: rgb(254, 244, 244);
+}
+
+.comment_entry {
+    display: block;
+    width: 100%;
+}
+
+.comment_entry div {
+    display: inline-block;
+    background-color: rgb(226, 226, 226);
+    width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 10px;
 }

@@ -39,7 +39,7 @@ function getAvgToxicityConfidence(job) {
 }
 
 function getToxicSegments(job_full) {
-  if (job_full == undefined)
+  if (job_full === undefined)
     return null;
   var j = Object.assign({}, job_full);
   j.toxicity = job_full.toxicity.filter(t=> t.toxicity >= 0.5);  
@@ -71,7 +71,6 @@ function AudioDetail ({jobName, onBack}) {
         //.then((response) => response.json())
         .then((data) => {
             var j = JSON.parse(data.body);
-            console.log(j);
             setJobFull(j);
             setAvgToxicity(getAvgToxicityConfidence(j));
             setJob(getToxicSegments(j));
@@ -181,7 +180,7 @@ function AudioDetail ({jobName, onBack}) {
           ]
         }}
         cardsPerRow={[
-          { cards: 1 },
+          { cards: 3 },
           { minWidth: 500, cards: 3 }
         ]}
         items={job.toxicity}

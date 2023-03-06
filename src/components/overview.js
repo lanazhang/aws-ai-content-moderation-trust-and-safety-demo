@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -6,27 +6,29 @@ import {
   Container,
   Header,
   SpaceBetween,
-  StatusIndicator,
+  Flashbar
 } from '@cloudscape-design/components';
 import { CounterLink } from './commons/common-components';
 import BarChart from "@cloudscape-design/components/bar-chart";
 import PieChart from "@cloudscape-design/components/pie-chart";
 import LineChart from "@cloudscape-design/components/line-chart";
 
-function constructBarData(obj) {
-  var result =[]
-
-  Object.keys(obj).forEach = (i, idx) => {
-    console.log(i);
-
-  }
-  //console.log(result);
-  return result;
-}
 
 export default () => {
+  const [notifications, setNotifications] = React.useState([{
+    type: "info",
+    dismissible: true,
+    dismissLabel: "Dismiss message",
+    onDismiss: () => setNotifications([]),
+    content: (
+      <>
+        This report demonstrates the concept of a top-down dashboard that presents key business insights. The data used in this report is static and serves as an example of how such a dashboard could look and function.
+      </>
+    ),
+    id: "message_1"
+  }]);
 
-   const [report, setReport] = useState(
+   const report =
     {
       "summary": {
         "total_user": 30484,
@@ -100,8 +102,7 @@ export default () => {
         {x:"SumaiL", y:39},
         {x:"Somnus", y:21},
       ]
-    }
-   );
+    };
 
    const Summary = () => (
     <ColumnLayout columns={4} variant="text-grid">
@@ -251,39 +252,37 @@ export default () => {
           title: "Suggestive",
           type: "line",
           data: [
-            { x: new Date(1601006400000), y: 110 },
-            { x: new Date(1601007300000), y: 153 },
-            { x: new Date(1601008200000), y: 182 },
-            { x: new Date(1601009100000), y: 113 },
-            { x: new Date(1601010000000), y: 124 },
-            { x: new Date(1601010900000), y: 152 },
-            { x: new Date(1601011800000), y: 198 },
-            { x: new Date(1601012700000), y: 158 },
-            { x: new Date(1601013600000), y: 103 },
-            { x: new Date(1601014500000), y: 126 },
-            { x: new Date(1601015400000), y: 110 },
-            { x: new Date(1601016300000), y: 146 },
-            { x: new Date(1601017200000), y: 183 },
-            { x: new Date(1601018100000), y: 120 },
-            { x: new Date(1601019000000), y: 168 },
-            { x: new Date(1601019900000), y: 192 },
-            { x: new Date(1601020800000), y: 245 },
-            { x: new Date(1601021700000), y: 287 },
-            { x: new Date(1601022600000), y: 220 },
-            { x: new Date(1601023500000), y: 348 },
-            { x: new Date(1601024400000), y: 292 },
-            { x: new Date(1601025300000), y: 338 },
-            { x: new Date(1601026200000), y: 362 },
-            { x: new Date(1601027100000), y: 345 },
-            { x: new Date(1601028000000), y: 342 },
-            { x: new Date(1601028900000), y: 394 },
-            { x: new Date(1601029800000), y: 447 },
-            { x: new Date(1601030700000), y: 474 },
-            { x: new Date(1601031600000), y: 463 },
-            { x: new Date(1601032500000), y: 449 },
-            { x: new Date(1601033400000), y: 452 },
-            { x: new Date(1601034300000), y: 492 },
-            { x: new Date(1601035200000), y: 530 }
+            { x: new Date("2023-03-01"), y: 110 },
+            { x: new Date("2023-03-02"), y: 153 },
+            { x: new Date("2023-03-03"), y: 182 },
+            { x: new Date("2023-03-04"), y: 113 },
+            { x: new Date("2023-03-05"), y: 124 },
+            { x: new Date("2023-03-06"), y: 152 },
+            { x: new Date("2023-03-07"), y: 198 },
+            { x: new Date("2023-03-08"), y: 158 },
+            { x: new Date("2023-03-09"), y: 103 },
+            { x: new Date("2023-03-10"), y: 126 },
+            { x: new Date("2023-03-11"), y: 110 },
+            { x: new Date("2023-03-12"), y: 146 },
+            { x: new Date("2023-03-13"), y: 183 },
+            { x: new Date("2023-03-14"), y: 120 },
+            { x: new Date("2023-03-15"), y: 168 },
+            { x: new Date("2023-03-16"), y: 192 },
+            { x: new Date("2023-03-17"), y: 245 },
+            { x: new Date("2023-03-18"), y: 287 },
+            { x: new Date("2023-03-19"), y: 220 },
+            { x: new Date("2023-03-20"), y: 348 },
+            { x: new Date("2023-03-21"), y: 292 },
+            { x: new Date("2023-03-22"), y: 338 },
+            { x: new Date("2023-03-23"), y: 362 },
+            { x: new Date("2023-03-24"), y: 345 },
+            { x: new Date("2023-03-25"), y: 342 },
+            { x: new Date("2023-03-26"), y: 394 },
+            { x: new Date("2023-03-27"), y: 447 },
+            { x: new Date("2023-03-28"), y: 474 },
+            { x: new Date("2023-03-29"), y: 463 },
+            { x: new Date("2023-03-30"), y: 449 },
+            { x: new Date("2023-03-31"), y: 452 }
           ],
           valueFormatter: function o(e) {
             return e.toFixed(2);
@@ -293,39 +292,37 @@ export default () => {
           title: "Nudity",
           type: "line",
           data: [
-            { x: new Date(1601006400000), y: 13 },
-            { x: new Date(1601007300000), y: 18 },
-            { x: new Date(1601008200000), y: 26 },
-            { x: new Date(1601009100000), y: 20 },
-            { x: new Date(1601010000000), y: 21 },
-            { x: new Date(1601010900000), y: 26 },
-            { x: new Date(1601011800000), y: 32 },
-            { x: new Date(1601012700000), y: 38 },
-            { x: new Date(1601013600000), y: 35 },
-            { x: new Date(1601014500000), y: 39 },
-            { x: new Date(1601015400000), y: 37 },
-            { x: new Date(1601016300000), y: 45 },
-            { x: new Date(1601017200000), y: 47 },
-            { x: new Date(1601018100000), y: 48 },
-            { x: new Date(1601019000000), y: 42 },
-            { x: new Date(1601019900000), y: 50 },
-            { x: new Date(1601020800000), y: 51 },
-            { x: new Date(1601021700000), y: 52 },
-            { x: new Date(1601022600000), y: 52 },
-            { x: new Date(1601023500000), y: 54 },
-            { x: new Date(1601024400000), y: 59 },
-            { x: new Date(1601025300000), y: 58 },
-            { x: new Date(1601026200000), y: 60 },
-            { x: new Date(1601027100000), y: 64 },
-            { x: new Date(1601028000000), y: 68 },
-            { x: new Date(1601028900000), y: 62 },
-            { x: new Date(1601029800000), y: 64 },
-            { x: new Date(1601030700000), y: 65 },
-            { x: new Date(1601031600000), y: 56 },
-            { x: new Date(1601032500000), y: 50 },
-            { x: new Date(1601033400000), y: 59 },
-            { x: new Date(1601034300000), y: 63 },
-            { x: new Date(1601035200000), y: 65 }
+            { x: new Date("2023-03-01"), y: 13 },
+            { x: new Date("2023-03-02"), y: 18 },
+            { x: new Date("2023-03-03"), y: 26 },
+            { x: new Date("2023-03-04"), y: 20 },
+            { x: new Date("2023-03-05"), y: 21 },
+            { x: new Date("2023-03-06"), y: 26 },
+            { x: new Date("2023-03-07"), y: 32 },
+            { x: new Date("2023-03-08"), y: 38 },
+            { x: new Date("2023-03-09"), y: 35 },
+            { x: new Date("2023-03-10"), y: 39 },
+            { x: new Date("2023-03-11"), y: 37 },
+            { x: new Date("2023-03-12"), y: 45 },
+            { x: new Date("2023-03-13"), y: 47 },
+            { x: new Date("2023-03-14"), y: 48 },
+            { x: new Date("2023-03-15"), y: 42 },
+            { x: new Date("2023-03-16"), y: 50 },
+            { x: new Date("2023-03-17"), y: 51 },
+            { x: new Date("2023-03-18"), y: 52 },
+            { x: new Date("2023-03-19"), y: 52 },
+            { x: new Date("2023-03-20"), y: 54 },
+            { x: new Date("2023-03-21"), y: 59 },
+            { x: new Date("2023-03-22"), y: 58 },
+            { x: new Date("2023-03-23"), y: 60 },
+            { x: new Date("2023-03-24"), y: 64 },
+            { x: new Date("2023-03-25"), y: 68 },
+            { x: new Date("2023-03-26"), y: 62 },
+            { x: new Date("2023-03-27"), y: 64 },
+            { x: new Date("2023-03-28"), y: 65 },
+            { x: new Date("2023-03-29"), y: 56 },
+            { x: new Date("2023-03-40"), y: 50 },
+            { x: new Date("2023-03-31"), y: 59 }
           ],
           valueFormatter: function o(e) {
             return e.toFixed(2);
@@ -335,39 +332,37 @@ export default () => {
           title: "Hate speech",
           type: "line",
           data: [
-            { x: new Date(1601006400000), y: 113 },
-            { x: new Date(1601007300000), y: 118 },
-            { x: new Date(1601008200000), y: 126 },
-            { x: new Date(1601009100000), y: 120 },
-            { x: new Date(1601010000000), y: 121 },
-            { x: new Date(1601010900000), y: 126 },
-            { x: new Date(1601011800000), y: 132 },
-            { x: new Date(1601012700000), y: 138 },
-            { x: new Date(1601013600000), y: 235 },
-            { x: new Date(1601014500000), y: 119 },
-            { x: new Date(1601015400000), y: 137 },
-            { x: new Date(1601016300000), y: 145 },
-            { x: new Date(1601017200000), y: 147 },
-            { x: new Date(1601018100000), y: 248 },
-            { x: new Date(1601019000000), y: 142 },
-            { x: new Date(1601019900000), y: 150 },
-            { x: new Date(1601020800000), y: 151 },
-            { x: new Date(1601021700000), y: 152 },
-            { x: new Date(1601022600000), y: 252 },
-            { x: new Date(1601023500000), y: 254 },
-            { x: new Date(1601024400000), y: 259 },
-            { x: new Date(1601025300000), y: 158 },
-            { x: new Date(1601026200000), y: 160 },
-            { x: new Date(1601027100000), y: 164 },
-            { x: new Date(1601028000000), y: 368 },
-            { x: new Date(1601028900000), y: 362 },
-            { x: new Date(1601029800000), y: 264 },
-            { x: new Date(1601030700000), y: 265 },
-            { x: new Date(1601031600000), y: 156 },
-            { x: new Date(1601032500000), y: 150 },
-            { x: new Date(1601033400000), y: 159 },
-            { x: new Date(1601034300000), y: 163 },
-            { x: new Date(1601035200000), y: 165 }
+            { x: new Date("2023-03-01"), y: 113 },
+            { x: new Date("2023-03-02"), y: 118 },
+            { x: new Date("2023-03-03"), y: 126 },
+            { x: new Date("2023-03-04"), y: 120 },
+            { x: new Date("2023-03-05"), y: 121 },
+            { x: new Date("2023-03-06"), y: 126 },
+            { x: new Date("2023-03-07"), y: 132 },
+            { x: new Date("2023-03-08"), y: 138 },
+            { x: new Date("2023-03-09"), y: 235 },
+            { x: new Date("2023-03-10"), y: 119 },
+            { x: new Date("2023-03-11"), y: 137 },
+            { x: new Date("2023-03-12"), y: 145 },
+            { x: new Date("2023-03-13"), y: 147 },
+            { x: new Date("2023-03-14"), y: 248 },
+            { x: new Date("2023-03-15"), y: 142 },
+            { x: new Date("2023-03-16"), y: 150 },
+            { x: new Date("2023-03-17"), y: 151 },
+            { x: new Date("2023-03-18"), y: 152 },
+            { x: new Date("2023-03-19"), y: 252 },
+            { x: new Date("2023-03-20"), y: 254 },
+            { x: new Date("2023-03-21"), y: 259 },
+            { x: new Date("2023-03-22"), y: 158 },
+            { x: new Date("2023-03-23"), y: 160 },
+            { x: new Date("2023-03-24"), y: 164 },
+            { x: new Date("2023-03-25"), y: 368 },
+            { x: new Date("2023-03-26"), y: 362 },
+            { x: new Date("2023-03-27"), y: 264 },
+            { x: new Date("2023-03-28"), y: 265 },
+            { x: new Date("2023-03-29"), y: 156 },
+            { x: new Date("2023-03-30"), y: 150 },
+            { x: new Date("2023-03-31"), y: 159 }
           ],
           valueFormatter: function o(e) {
             return e.toFixed(2);
@@ -377,39 +372,37 @@ export default () => {
           title: "Profanity",
           type: "line",
           data: [
-            { x: new Date(1601006400000), y: 413 },
-            { x: new Date(1601007300000), y: 418 },
-            { x: new Date(1601008200000), y: 426 },
-            { x: new Date(1601009100000), y: 420 },
-            { x: new Date(1601010000000), y: 521 },
-            { x: new Date(1601010900000), y: 526 },
-            { x: new Date(1601011800000), y: 532 },
-            { x: new Date(1601012700000), y: 538 },
-            { x: new Date(1601013600000), y: 635 },
-            { x: new Date(1601014500000), y: 519 },
-            { x: new Date(1601015400000), y: 637 },
-            { x: new Date(1601016300000), y: 645 },
-            { x: new Date(1601017200000), y: 647 },
-            { x: new Date(1601018100000), y: 648 },
-            { x: new Date(1601019000000), y: 612 },
-            { x: new Date(1601019900000), y: 750 },
-            { x: new Date(1601020800000), y: 751 },
-            { x: new Date(1601021700000), y: 752 },
-            { x: new Date(1601022600000), y: 752 },
-            { x: new Date(1601023500000), y: 854 },
-            { x: new Date(1601024400000), y: 859 },
-            { x: new Date(1601025300000), y: 858 },
-            { x: new Date(1601026200000), y: 960 },
-            { x: new Date(1601027100000), y: 964 },
-            { x: new Date(1601028000000), y: 968 },
-            { x: new Date(1601028900000), y: 962 },
-            { x: new Date(1601029800000), y: 964 },
-            { x: new Date(1601030700000), y: 865 },
-            { x: new Date(1601031600000), y: 856 },
-            { x: new Date(1601032500000), y: 950 },
-            { x: new Date(1601033400000), y: 959 },
-            { x: new Date(1601034300000), y: 1063 },
-            { x: new Date(1601035200000), y: 1165 }
+            { x: new Date("2023-03-01"), y: 413 },
+            { x: new Date("2023-03-02"), y: 418 },
+            { x: new Date("2023-03-03"), y: 426 },
+            { x: new Date("2023-03-04"), y: 420 },
+            { x: new Date("2023-03-05"), y: 521 },
+            { x: new Date("2023-03-06"), y: 526 },
+            { x: new Date("2023-03-07"), y: 532 },
+            { x: new Date("2023-03-08"), y: 538 },
+            { x: new Date("2023-03-09"), y: 635 },
+            { x: new Date("2023-03-10"), y: 519 },
+            { x: new Date("2023-03-11"), y: 637 },
+            { x: new Date("2023-03-12"), y: 645 },
+            { x: new Date("2023-03-13"), y: 647 },
+            { x: new Date("2023-03-14"), y: 648 },
+            { x: new Date("2023-03-15"), y: 612 },
+            { x: new Date("2023-03-16"), y: 750 },
+            { x: new Date("2023-03-17"), y: 751 },
+            { x: new Date("2023-03-18"), y: 752 },
+            { x: new Date("2023-03-19"), y: 752 },
+            { x: new Date("2023-03-20"), y: 854 },
+            { x: new Date("2023-03-21"), y: 859 },
+            { x: new Date("2023-03-22"), y: 858 },
+            { x: new Date("2023-03-23"), y: 960 },
+            { x: new Date("2023-03-24"), y: 964 },
+            { x: new Date("2023-03-25"), y: 968 },
+            { x: new Date("2023-03-26"), y: 962 },
+            { x: new Date("2023-03-27"), y: 964 },
+            { x: new Date("2023-03-28"), y: 865 },
+            { x: new Date("2023-03-29"), y: 856 },
+            { x: new Date("2023-03-30"), y: 950 },
+            { x: new Date("2023-03-31"), y: 959 }
           ],
           valueFormatter: function o(e) {
             return e.toFixed(2);
@@ -417,10 +410,10 @@ export default () => {
         }
       ]}
       xDomain={[
-        new Date(1601006400000),
-        new Date(1601035200000)
+        new Date("2023-03-01"),
+        new Date("2023-03-31")
       ]}
-      yDomain={[0, 1500]}
+      yDomain={[0, 1000]}
       i18nStrings={{
         filterLabel: "Filter displayed data",
         filterPlaceholder: "Filter data",
@@ -432,10 +425,7 @@ export default () => {
           e
             .toLocaleDateString("en-US", {
               month: "short",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-              hour12: !1
+              day: "numeric"
             })
             .split(",")
             .join("\n"),
@@ -527,13 +517,16 @@ export default () => {
     return (
       <div>
         <br/>
+        <Flashbar items={notifications} />
+        <br/>
         <Container
           header={
             <div>
             <Header
               variant="h2"
-              info={''}>
-              Trust & Safety overview
+              info={''}
+              description={'All metrics on this page are served by static data for demo purposes.'}>
+              Overview
             </Header>
             <Box float="right">
               <SpaceBetween direction="horizontal" size="xs">

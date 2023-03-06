@@ -70,7 +70,7 @@ export const ToolsContent = () => (
 );
 
 export const EC2ToolsContent = () => (
-  <HelpPanel header={<h2>Trust & Safety demo</h2>}>
+  <HelpPanel header={<h2>UGC moderation</h2>}>
     <p>
       View your current instances and related information such as the instance ID, instance type, instance status, and
       more. To drill down even further into the details, select an individual instance.

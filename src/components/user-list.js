@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as React from "react";
-import { Box, Button, Table, TextFilter, Modal, SpaceBetween, Container, Alert, Textarea, Link,Pagination, StatusIndicator, Header, Badge} from '@cloudscape-design/components';
-import { PostCreate } from "./post-create";
+import { Box, Button, Table, TextFilter, Modal, SpaceBetween,Link,Pagination, Header, Badge,Flashbar} from '@cloudscape-design/components';
+import { UserDetail } from "./user-detail";
 import { FetchData } from "../resources/data-provider";
 import posts from "../resources/users.json";
 
@@ -71,7 +71,19 @@ function UserList ({user, onItemClick, onSelectionChange}) {
   const [showDetail, setShowDetail] = useState(false); 
   const [loadingStatus, setLoadingStatus] = useState(null); //null, LOADING, LOADED
   
-  
+  const [notifications, setNotifications] = useState([{
+    type: "info",
+    dismissible: true,
+    dismissLabel: "Dismiss message",
+    onDismiss: () => setNotifications([]),
+    content: (
+      <>
+        This page demonstrates the concept of managing users by reviewing user activities. Adminstrator could ban the user or send them a message if they posted toxic content on the platform.  
+        The data used in this page is static and serves as an example of how such a management console could look and function.
+      </>
+    ),
+    id: "message_1"
+  }]);
   useEffect(() => {
     if (items.length === 0 && loadingStatus === null) {
       setLoadingStatus("LOADING");
@@ -91,9 +103,9 @@ function UserList ({user, onItemClick, onSelectionChange}) {
   })
 
   const handleViewDetail = e => {
-    const id = e.detail.target;
-    setSelectedItems([items.find(i =>i.id == id)]);
-    setShowCreate(true);
+    const user = e.detail.target;
+    setSelectedItems([items.find(i =>i.user === user)]);
+    setShowDetail(true);
   }
 
   async function handleDeleteSubmit(e)  {
@@ -106,9 +118,9 @@ function UserList ({user, onItemClick, onSelectionChange}) {
 
     if (selectedItems !== null && selectedItems.length > 0) {
       FetchData("/task/delete-task", "post", {
-        id: selectedItems[0].id
+        id: selectedItems[0].user
       }).then((data) => {
-            if (data.statusCode == "200")
+            if (data.statusCode === "200")
             setItems([]);
             setPageItems([]);
             setLoadingStatus(null);
@@ -121,6 +133,10 @@ function UserList ({user, onItemClick, onSelectionChange}) {
 
   const handleDeleteDismiss = e => {
     setShowDelete(false);
+  }
+
+  const handleDetailDismiss = e => {
+    setShowDetail(false);
   }
 
   const handlePostCreate = e => {
@@ -212,7 +228,10 @@ const handleFilterChaneg = e => {
 }
 
   return (
-      <div> <br/>
+      <div> 
+        {showDetail?<UserDetail userProfile={selectedItems !== undefined && selectedItems !== null && selectedItems.length > 0 ?selectedItems[0]:null} onDismiss={handleDetailDismiss} />:<div/>}
+        <p><Flashbar items={notifications} /></p>
+        <br/>
         <Table
           loading={loadingStatus === "LOADING"}
           loadingText="Loading stories"
@@ -230,9 +249,9 @@ const handleFilterChaneg = e => {
               } selected`,
             itemSelectionLabel: ({ selectedItems }, item) => {
               const isItemSelected = selectedItems.filter(
-                i => i.id === item.id
+                i => i.user === item.user
               ).length;
-              return `${item.id} is ${
+              return `${item.user} is ${
                 isItemSelected ? "" : "not"
               } selected`;
             }
@@ -240,7 +259,7 @@ const handleFilterChaneg = e => {
           columnDefinitions={COLUMNS}
           items={pageItems}
           selectionType="single"
-          trackBy="id"
+          trackBy="user"
           empty={
             <Box textAlign="center" color="inherit">
               <b>No stories</b>
@@ -280,9 +299,7 @@ const handleFilterChaneg = e => {
             />
           }
         />
-      {showCreate?
-      <PostCreate post={selectedItems.length > 0? selectedItems[0]: null} onDismiss={handleCreateDismiss} />
-      :<div/>}
+      
       {showDelete?
         <Modal
           visible={true}

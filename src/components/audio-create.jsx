@@ -1,26 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, ColumnLayout, FormField, Input, Modal, SpaceBetween, Alert} from '@cloudscape-design/components';
+import React, { useState } from 'react';
+import { Box, Button, ColumnLayout, FormField, Input, Modal, SpaceBetween} from '@cloudscape-design/components';
 import { FetchData } from "../resources/data-provider";
 
-const REGION = "us-west-2";
-
-function readFileDataAsBase64(e) {
-  const file = e.target.files[0];
-
-  return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-          resolve(event.target.result);
-        };
-
-      reader.onerror = (err) => {
-          reject(err);
-      };
-
-      reader.readAsBinaryString(file);
-  });
-}
 
 function AudioCreate ({jobNames, onDismiss}) {
 
@@ -46,7 +27,7 @@ function AudioCreate ({jobNames, onDismiss}) {
       })
         .then((response) => response.json())
         .then((data) => {
-            var resp = JSON.parse(data.body);
+            //var resp = JSON.parse(data.body);
             onDismiss(e);
         })
         .catch((err) => {

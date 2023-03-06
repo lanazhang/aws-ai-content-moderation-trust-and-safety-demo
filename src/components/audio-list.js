@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import * as React from "react";
-import { Box, Button, Table, TextFilter, Modal, SpaceBetween, Container, Alert, Textarea, Link,Pagination, StatusIndicator, Header} from '@cloudscape-design/components';
+import { Box, Button, Table, TextFilter, Modal, SpaceBetween, Link,Pagination, StatusIndicator, Header, Flashbar} from '@cloudscape-design/components';
 import { AudioDetail } from './audio-detail';
 import { AudioCreate } from "./audio-create";
 import { FetchData } from "../resources/data-provider";
@@ -38,7 +38,19 @@ function AudioList ({user, onItemClick, onSelectionChange}) {
   const [showDetail, setShowDetail] = useState(false); 
   const [loadingStatus, setLoadingStatus] = useState(null); //null, LOADING, LOADED
   
-  
+  const [notifications, setNotifications] = React.useState([{
+    type: "info",
+    dismissible: true,
+    dismissLabel: "Dismiss message",
+    onDismiss: () => setNotifications([]),
+    content: (
+      <>
+        This page demonstrates the Transcribe toxicity detection features in beta. The "Create transcription job" will start functioning in July 2023 when the feature GA.
+      </>
+    ),
+    id: "message_1"
+  }]);
+
   useEffect(() => {
     if (items.length === 0 && loadingStatus === null) {
       setLoadingStatus("LOADING");
@@ -58,8 +70,8 @@ function AudioList ({user, onItemClick, onSelectionChange}) {
   })
 
   const handleViewDetail = e => {
-    const id = e.detail.target;
-    setSelectedItems([items.find(i =>i.id == id)]);
+    var n = e.detail.target;
+    setSelectedItems([items.find(i =>i.name === n)]);
     setShowDetail(true);
     setShowCreate(false);
   }
@@ -74,9 +86,9 @@ function AudioList ({user, onItemClick, onSelectionChange}) {
 
     if (selectedItems !== null && selectedItems.length > 0) {
       FetchData("/task/delete-task", "post", {
-        id: selectedItems[0].id
+        name: selectedItems[0].name
       }).then((data) => {
-            if (data.statusCode == "200")
+            if (data.statusCode === "200")
             setItems([]);
             setPageItems([]);
             setLoadingStatus(null);
@@ -108,28 +120,13 @@ function AudioList ({user, onItemClick, onSelectionChange}) {
     setLoadingStatus(null);
   }
 
-  const handleCreateSubmit = e => {
-    setShowCreate(false);    
-    setSelectedItems([e.task]);
-    setShowDetail(true);
-  }
-
   const handleDelete = e =>{
     setShowDelete(true);
   }
 
-  const handleReport = e => {
-    if (e.task !== undefined)
-      setSelectedItems([e.task]);
-  }
-  const handleImages = e => {
-    if (e.task !== undefined)
-      setSelectedItems([e.task]);
-    setShowDetail(false);
-}
   const handleSortingChange = e => {
     //console.log(e);
-    if (items.length == 0)
+    if (items.length === 0)
       return
 
     let is = items.map(i=> i);
@@ -172,7 +169,7 @@ const handlePaginationChange = e => {
 
 const handleFilterChaneg = e => {
   setFilterText(e.detail.filteringText);
-  if (filterText === null || filterText.length == 0) {
+  if (filterText === null || filterText.length === 0) {
     setItems(items);
     setPageItems(getCurrentPageItems(items));
   }
@@ -189,8 +186,10 @@ const handleFilterChaneg = e => {
 }
 
   return (
-      <div> <br/>
-      {showDetail?<AudioDetail jobName={selectedItems[0].name} onBack={handleBackToList} />:
+      <div> 
+      <p><Flashbar items={notifications} /></p>
+      <br/>
+      {showDetail && selectedItems.length > 0 && selectedItems[0] !== undefined?<AudioDetail jobName={selectedItems[0].name} onBack={handleBackToList} />:
         <Table
           loading={loadingStatus === "LOADING"}
           loadingText="Loading tasks"
@@ -208,20 +207,20 @@ const handleFilterChaneg = e => {
               } selected`,
             itemSelectionLabel: ({ selectedItems }, item) => {
               const isItemSelected = selectedItems.filter(
-                i => i.id === item.id
+                i => i.name === item.name
               ).length;
-              return `${item.id} is ${
+              return `${item.name} is ${
                 isItemSelected ? "" : "not"
               } selected`;
             }
           }}
           columnDefinitions={[
             {
-              id: 'id',
+              id: 'name',
               sortingField: 'name',
               header: 'Task name',
               cell: item => (
-                <Link variant="primary" target={item.id} onFollow={handleViewDetail}>{item.name}</Link>
+                <Link variant="primary" target={item.name} onFollow={handleViewDetail}>{item.name}</Link>
               ),
               minWidth: 180,
             },
@@ -251,7 +250,7 @@ const handleFilterChaneg = e => {
           ]}
           items={pageItems}
           selectionType="single"
-          trackBy="id"
+          trackBy="name"
           empty={
             <Box textAlign="center" color="inherit">
               <b>No evaluation tasks</b>
@@ -279,7 +278,7 @@ const handleFilterChaneg = e => {
             actions={
               <SpaceBetween size="xs" direction="horizontal">
                 {/* <Button disabled={!isOnlyOneSelected}>Edit</Button>*/}
-                <Button onClick={handleDelete} disabled={selectedItems.length === 0 || selectedItems[0].status == "MODERATING"}>Delete job</Button>
+                <Button onClick={handleDelete} disabled={selectedItems.length === 0 || selectedItems[0] === undefined || selectedItems[0].status === "MODERATING"}>Delete job</Button>
                 <Button variant="primary" onClick={handleAudioCreate}>Create transcription job</Button>
               </SpaceBetween>
             }
@@ -322,7 +321,7 @@ const handleFilterChaneg = e => {
               </SpaceBetween>
             </Box>
           }>
-          Do you want to delete the task: <b>{selectedItems[0].name}</b>? All related resources will be deleted, including the images uploaded to the S3 bucket folder if you have already uploaded images.
+          Do you want to delete the task? All related resources will be deleted, including the images uploaded to the S3 bucket folder if you have already uploaded images.
         </Modal>      
       :<div/>}
     </div>

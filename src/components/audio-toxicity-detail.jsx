@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import {Box, Button, ColumnLayout, Modal, SpaceBetween,} from '@cloudscape-design/components';
 import BarChart from "@cloudscape-design/components/bar-chart";
 
@@ -21,7 +21,7 @@ function AudioToxicityDetail ({segment, inputUrl, onDismiss}) {
         <Box variant="awsui-key-label">Transcribed text</Box>
         <Box variant="div">{segment.text}</Box>
       </SpaceBetween>  
-      {segment.toxicity >= 0?
+      
       <SpaceBetween size="l">
         <BarChart
           hideFilter={true}
@@ -86,7 +86,7 @@ function AudioToxicityDetail ({segment, inputUrl, onDismiss}) {
             </Box>
           }
         />
-      </SpaceBetween>:<div/>}
+      </SpaceBetween>
     </ColumnLayout>
     </Modal>
   );

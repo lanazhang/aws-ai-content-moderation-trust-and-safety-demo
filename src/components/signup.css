@@ -1,0 +1,128 @@
+.form{
+    border-radius: 10px;
+    width: 55%;
+    min-height: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    float: left;
+    background-color: rgb(226,226,226);
+    border: solid 1px gray;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    /* height: 600px; */
+}
+.signup_image {
+    display: inline;
+    max-height: 200px;
+    height:auto;
+    width: auto;
+    max-width: 100%;
+}
+.signup_image_hide {
+    display: none;
+}
+.header{
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.form-body{
+    text-align: center;
+    padding: 5px;
+}
+
+.form-row {
+    display: inline-block;
+    height: 60px;
+    width: 100%;
+    text-align: left;
+}
+
+.form__label{
+    padding-bottom: 50px;
+}
+
+.form__input{
+    width: 100%;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgray;
+    min-height: 25px;
+}
+.form__input__required{
+    width: 100%;
+    border:1px solid red;
+    border-radius: 4px;
+    min-height: 25px;
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    padding: 7px;
+}
+
+.message {
+    border: 2px solid orange;
+    width: 100%;
+    background-color: #FAD8B1;
+}
+.message .item{
+    font-size: smaller;
+    margin: 5px;
+}
+
+.inline_message
+{
+    display: block;
+    font-size: 10px;
+    color: red;
+}
+
+.inline_message_severe
+{
+    border: 2px solid orange;
+    width: 100%;
+    background-color: #FAD8B1;
+    font-size:12px;
+    margin: 1px;
+    color: black;
+}
+
+.tooltip {
+    border: 1px solid whitesmoke;
+}
+.signup .post_right{
+    position: absolute;
+    display: inline-block;
+    width: 32%;
+    margin-left:10px;
+    position: absolute;
+    right: 3%;
+    top: 80px;
+    border: solid 1px lightgray;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #0972d3;
+    color: white;
+}
+.signup .post_right .header {
+    font-size: large;
+    font-weight: bold;
+}
+.signup .post_right .item {
+    margin-top: 20px;
+    display: list-item;
+    margin-left: 20px;
+}
+.signup .post_right .item .titile {
+    font-weight: bold;
+}
+.signup .post_right .item .txt {
+    font-weight: normal;
+    color: white;
+    font-size: small;
+}
