@@ -1,6 +1,6 @@
 {
-  "short_name": "Trust & Safety demo",
-  "name": "AWS Content Moderation Trust & Safety demo",
+  "short_name": "UGC moderation demo",
+  "name": "AWS Content Moderation UGC demo",
   "icons": [
     {
       "src": "favicon.ico",

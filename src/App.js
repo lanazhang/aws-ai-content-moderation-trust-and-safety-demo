@@ -9,6 +9,7 @@ import { AppLayout } from '@cloudscape-design/components';
 import { AudioList } from "./components/audio-list";
 import { PostHome } from "./components/post-home";
 import { UserList } from "./components/user-list";
+import LiveStream from "./components/livestream";
 import Signup from "./components/signup";
 import TopNavigation from "@cloudscape-design/components/top-navigation";
 import logo from './static/aws_logo.png'
@@ -20,6 +21,7 @@ const ITEMS = [
   { type: 'link', id:"signup", text: 'User Sign Up', href:"#/signup"},
   { type: 'link', id:"posts", text: 'Community Posts', href:"#/posts"},
   { type: 'link', id:"audios", text: 'Audio Chats', href:"#/audios"},
+  { type: 'link', id:"livestream", text: 'Live stream', href:"#/livestream"},
   { type: 'divider' },
   { type: 'link', id:"overview", text: 'Overview', href:"#/overview"},
   { type: 'link', id:"users", text: 'Manage User', href:"#/users"},
@@ -54,8 +56,8 @@ const App = ({ signOut, user }) => {
   const handleHavItemClick = e => {
     setCurrentPage(e.detail.id);
     switch(e.detail.id) {
-      case "signup":
-        //setNavigationOpen(false);
+      case "livestream":
+        setNavigationOpen(false);
         break;
       case "overview":
 
@@ -138,6 +140,7 @@ const App = ({ signOut, user }) => {
           currentPage === "users"?<UserList user={user} />:
           currentPage === "posts"?<PostHome user={user} />:
           currentPage === "signup"?<Signup />:
+          currentPage === "livestream"?<LiveStream />:
           <div/>
         }
       >

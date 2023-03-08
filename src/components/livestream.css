@@ -1,0 +1,61 @@
+.livestream {
+    position: relative;
+    width: 100%;
+}
+
+.livestream .WebCam {
+    position: absolute;
+    bottom: 180px;
+    left:30px;
+}
+ 
+.livestream .webCamModeration {
+    position: absolute;
+    height:auto;
+    width: 260px;
+    border: solid red 1px;
+    background-color: rgb(253, 232, 232);
+    color: red;
+    bottom: 380px;
+    left:50px;
+}
+.livestream .bgModeration {
+  display: block;
+  position: absolute;
+  left: 100px;
+  top: 0px;
+  height: 40 px;
+  width: 1000px;
+  border:solid 1px red;
+  background-color: rgb(255, 217, 217);
+  color:red;
+  font-weight: bold;
+  padding: 10px;
+  z-index: 100;
+}
+.livestream .bgVideo {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 10px;
+}
+
+
+.WebCam button {
+  background-color: crimson;
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
