@@ -214,6 +214,10 @@ function PostHome ({user, onItemClick, onSelectionChange}) {
           <div className="title">Add a comment to a post.</div>
           <div className="txt">You can also add a comment to the post to try out the text moderation using Comprehend. </div>
         </div>
+        <div className="item">
+          <div className="title">Check the post's scorecard.</div>
+          <div className="txt">Click "..." on the top-right of each post to check the toxic scorecard with moderation details. </div>
+        </div>
       </div>
     </div>
 

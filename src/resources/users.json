@@ -1,42 +1,63 @@
 [
     {
       "user": "lanaz",
+      "user_group": "premium",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",
       "post_count": 23,
       "audio_count": 12,
       "toxicity": 0.045
     },    
     {
       "user": "supergamer001",
+      "user_group": "silver",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",      
       "post_count": 143,
       "audio_count": 82,
       "toxicity": 0.745
     },
     {
       "user": "shit-head",
+      "user_group": "gold",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",      
       "post_count": 592,
       "audio_count": 321,
       "toxicity": 0.913
     },
     {
       "user": "N0tail",
+      "user_group": "premium",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",      
       "post_count": 121,
       "audio_count": 61,
       "toxicity": 0.614
     },
     {
       "user": "JerAx",
+      "user_group": "silver",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",      
       "post_count": 82,
       "audio_count": 34,
       "toxicity": 0.829
     },
     {
       "user": "Ceb",
+      "user_group": "gold",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",      
       "post_count": 722,
       "audio_count": 301,
       "toxicity": 0.602
     },
     {
       "user": "MinD_ContRol",
+      "user_group": "premium",
+      "registered_ts": "2022-10-09 17:27:40",
+      "last_ts": "2023-03-05 10:14:32",
       "post_count": 29,
       "audio_count": 3,
       "toxicity": 0.202

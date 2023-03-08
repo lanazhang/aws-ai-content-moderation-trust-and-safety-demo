@@ -4,11 +4,12 @@ import * as React from "react";
 import Alert from "@cloudscape-design/components/alert";
 import {withAuthenticator} from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import {Navigation, Notifications} from './components/commons/common-components';
+import {Navigation} from './components/commons/common-components';
 import { AppLayout } from '@cloudscape-design/components';
 import { AudioList } from "./components/audio-list";
 import { PostHome } from "./components/post-home";
 import { UserList } from "./components/user-list";
+import Signup from "./components/signup";
 import TopNavigation from "@cloudscape-design/components/top-navigation";
 import logo from './static/aws_logo.png'
 import Overview from "./components/overview";
@@ -16,11 +17,12 @@ import { BreadcrumbGroup, Link, SpaceBetween } from '@cloudscape-design/componen
 
 
 const ITEMS = [
-  { type: 'link', id:"overview", text: 'Overview', },
-  { type: 'link', id:"user", text: 'Search User', },
+  { type: 'link', id:"signup", text: 'User Sign Up', href:"#/signup"},
+  { type: 'link', id:"posts", text: 'Community Posts', href:"#/posts"},
+  { type: 'link', id:"audios", text: 'Audio Chats', href:"#/audios"},
   { type: 'divider' },
-  { type: 'link', id:"posts", text: 'Community Post', },
-  { type: 'link', id:"transcriptions", text: 'In-app Chat', },
+  { type: 'link', id:"overview", text: 'Overview', href:"#/overview"},
+  { type: 'link', id:"users", text: 'Manage User', href:"#/users"},
   { type: 'divider' },
   {
     type: 'link', text: 'Documentation', external: true,
@@ -32,7 +34,7 @@ const App = ({ signOut, user }) => {
   const [currentPage, setCurrentPage] = useState("overview");
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState({"id":"overview", "text": "Overview" });
   const [navigationOpen, setNavigationOpen] = useState(true);
-  const [activeNavHref, setActiveNavHref] = useState("overview");
+  const [activeNavHref, setActiveNavHref] = useState("#/overview");
   const appLayout = useRef();
 
   const [selectedItems, setSelectedItems] = useState([]); 
@@ -51,8 +53,16 @@ const App = ({ signOut, user }) => {
 
   const handleHavItemClick = e => {
     setCurrentPage(e.detail.id);
-    setCurrentBreadcrumb({"id":e.detail.id, "text": ITEMS.find(i=>i.id==e.detail.id).text })
-    setActiveNavHref(e.detail.id);
+    switch(e.detail.id) {
+      case "signup":
+        //setNavigationOpen(false);
+        break;
+      case "overview":
+
+        break;
+    }
+    setCurrentBreadcrumb({"id":e.detail.id, "text": ITEMS.find(i=>i.id===e.detail.id).text })
+    setActiveNavHref("#/"+e.detail.id);
   }
 
   const handleStart = e => {
@@ -64,7 +74,7 @@ const App = ({ signOut, user }) => {
       <TopNavigation      
       identity={{
         href: "#",
-        title: "AWS Content Moderation",
+        title: "AWS Content Moderation - UGC demo",
         logo: {
           src: logo,
           alt: "AWS"
@@ -91,44 +101,46 @@ const App = ({ signOut, user }) => {
         overflowMenuDismissIconAriaLabel: "Close menu"
       }}
     />
+    
       <AppLayout
-      headerSelector="#header"
-      ref={appLayout}
-      contentType="table"
-      navigationOpen={navigationOpen}
-      onNavigationChange={handleNavigationChange}
-      navigation={
-      <Navigation 
-        onFollowHandler={handleHavItemClick}
-        selectedItems={["overview"]}
-        activeHref={activeNavHref}
-        items={ITEMS} 
-      />}
-      breadcrumbs={
-        <BreadcrumbGroup 
-          items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
-        />
-      }
-      header={
-        <SpaceBetween size="l">
-          <Header
-            variant="h1"
-            info={<Link>Info</Link>}
-            description="AWS AI Content Moderation - Truest & Safety"
-          >
-            AWS Content Moderation Trust & Safety Demo
-          </Header>
-
-          { alert !== null && alert.length > 0?<Alert>{alert}</Alert>:<div/>}
-        </SpaceBetween>
-      }
-      content={
-        currentPage === "transcriptions"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
-        currentPage === "overview"?<Overview onStart={handleStart} />:
-        currentPage === "user"?<UserList user={user} />:
-        currentPage === "posts"?<PostHome user={user} />:<div/>
-      }
-    >
+        headerSelector="#header"
+        ref={appLayout}
+        contentType="table"
+        navigationOpen={navigationOpen}
+        onNavigationChange={handleNavigationChange}
+        navigation={
+          <Navigation 
+            onFollowHandler={handleHavItemClick}
+            selectedItems={["overview"]}
+            activeHref={activeNavHref}
+            items={ITEMS} 
+          />}
+        breadcrumbs={
+          <BreadcrumbGroup 
+            items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
+          />
+        }
+        header={
+          <SpaceBetween size="l">
+            <Header
+              variant="h1"
+              info={<Link>Info</Link>}
+              description="AWS AI Content Moderation - UGC demo"
+            >
+              AWS Content Moderation UGC Demo
+              
+            </Header>
+          </SpaceBetween>
+        }
+        content={
+          currentPage === "audios"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
+          currentPage === "overview"?<Overview onStart={handleStart} />:
+          currentPage === "users"?<UserList user={user} />:
+          currentPage === "posts"?<PostHome user={user} />:
+          currentPage === "signup"?<Signup />:
+          <div/>
+        }
+      >
     </AppLayout>
     </div>
   );

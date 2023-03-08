@@ -45,7 +45,7 @@ function AudioList ({user, onItemClick, onSelectionChange}) {
     onDismiss: () => setNotifications([]),
     content: (
       <>
-        This page demonstrates the Transcribe toxicity detection features in beta. The "Create transcription job" will start functioning in July 2023 when the feature GA.
+        This page demonstrates the Transcribe toxicity detection features in beta. 
       </>
     ),
     id: "message_1"
