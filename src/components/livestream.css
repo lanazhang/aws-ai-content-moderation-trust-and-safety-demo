@@ -11,30 +11,31 @@
  
 .livestream .webCamModeration {
     position: absolute;
-    height:auto;
-    width: 260px;
-    border: solid red 1px;
-    background-color: rgb(253, 232, 232);
-    color: red;
-    bottom: 380px;
-    left:50px;
+    height:235px;
+    padding-left:10px;
+    width: 276px;
+    border: solid red 5px;
+    background-color: red;
+    color: rgb(255, 240, 240);
+    font-size: bold;
+    bottom: 176px;
+    left:42px;
+    border-radius: 10px;
 }
-.livestream .bgModeration {
-  display: block;
+.livestream .videoModeration {
   position: absolute;
-  left: 100px;
+  right: 0px;
   top: 0px;
   height: 40 px;
-  width: 1000px;
-  border:solid 1px red;
-  background-color: rgb(255, 217, 217);
-  color:red;
+  width: 400px;
+  background-color: rgb(255, 0, 0, 0.6);
+  color:rgb(255, 240, 240);
   font-weight: bold;
-  padding: 10px;
+  padding-left: 10px;
   z-index: 100;
 }
 .livestream .bgVideo {
-  width: 100%;
+    width: 100%;
   height: 100%;
 }
 
