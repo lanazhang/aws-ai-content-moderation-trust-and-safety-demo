@@ -3,6 +3,7 @@ import './livestream.css'
 import { FetchData } from "../resources/data-provider";
 import ReactPlayer from "react-player";
 import Webcam from "react-webcam";
+import ChatBox from "./chatbox"
 
 class LiveStream extends React.Component {
 
@@ -61,9 +62,9 @@ class LiveStream extends React.Component {
                 let min = this.videoRef.current.getCurrentTime() * 1000 - 500;
                 let max = this.videoRef.current.getCurrentTime() * 1000 + 500;
                 var labels = this.moderationLables.find(l=> l.Timestamp >= min && l.Timestamp < max);
-                console.log(labels);
                 if (labels !== undefined && labels !== null && labels.ModerationLabel.ParentName.length > 0) {
-                    let vms = Object.assign([], this.state.videoModerationLabels);
+                    //let vms = Object.assign([], this.state.videoModerationLabels);
+                    let vms = [];
                     let msg = `${labels.Timestamp/1000} s: ${labels.ModerationLabel.ParentName}/${labels.ModerationLabel.Name} (${(labels.ModerationLabel.Confidence/100).toLocaleString(undefined,{style: 'percent', minimumFractionDigits:1})})`;
                     if (vms.indexOf(msg) == -1)
                         vms.push(msg);                     
@@ -93,11 +94,12 @@ class LiveStream extends React.Component {
                     loop={true}
                     playing={true}
                     width="100%"
-                    height="100%"
+                    height="90%"
                     url='https://d2m6vcpsgt3gn5.cloudfront.net/ugc-demo-web/images/media-demo.mp4' />
                 {this.state.webCamModerationLabels !== null && this.state.webCamModerationLabels.length > 0 ? 
                     <div className="webCamModeration">{this.state.webCamModerationLabels[0]}</div>:<div/>
                 }
+                <ChatBox id="chatbox"/>
                 <Webcam 
                     ref={this.webCamRef}
                     mirrored={true} 

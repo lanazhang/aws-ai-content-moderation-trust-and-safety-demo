@@ -23,8 +23,8 @@ const ITEMS = [
   { type: 'link', id:"audios", text: 'Audio Chats', href:"#/audios"},
   { type: 'link', id:"livestream", text: 'Live stream', href:"#/livestream"},
   { type: 'divider' },
-  { type: 'link', id:"overview", text: 'Overview', href:"#/overview"},
-  { type: 'link', id:"users", text: 'Manage User', href:"#/users"},
+  { type: 'link', id:"overview", text: 'UGC dashboard', href:"#/overview"},
+  { type: 'link', id:"users", text: 'Manage Users', href:"#/users"},
   { type: 'divider' },
   {
     type: 'link', text: 'Documentation', external: true,
@@ -71,80 +71,88 @@ const App = ({ signOut, user }) => {
     setCurrentPage("tasks");
   }
 
+  const handleTopClick = e => {
+    //console.log(e);
+    setCurrentPage("overview");
+    setActiveNavHref("#/overview")
+    setNavigationOpen(true);
+  }
+
     return (
       <div>
       <TopNavigation      
-      identity={{
-        href: "#",
-        title: "AWS Content Moderation - UGC demo",
-        logo: {
-          src: logo,
-          alt: "AWS"
-        }
-      }}
-      utilities={[
-        {
-          type: "menu-dropdown",
-          text: user.username,
-          description: user.email,
-          iconName: "user-profile",
-          onItemClick: signOut,
-          items: [
-            { type: "button", id: "signout", text: "Sign out"}
-          ]
-        }
-      ]}
-      i18nStrings={{
-        searchIconAriaLabel: "Search",
-        searchDismissIconAriaLabel: "Close search",
-        overflowMenuTriggerText: "More",
-        overflowMenuTitleText: "All",
-        overflowMenuBackIconAriaLabel: "Back",
-        overflowMenuDismissIconAriaLabel: "Close menu"
-      }}
-    />
-    
-      <AppLayout
-        headerSelector="#header"
-        ref={appLayout}
-        contentType="table"
-        navigationOpen={navigationOpen}
-        onNavigationChange={handleNavigationChange}
-        navigation={
-          <Navigation 
-            onFollowHandler={handleHavItemClick}
-            selectedItems={["overview"]}
-            activeHref={activeNavHref}
-            items={ITEMS} 
-          />}
-        breadcrumbs={
-          <BreadcrumbGroup 
-            items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
-          />
-        }
-        header={
-          <SpaceBetween size="l">
-            <Header
-              variant="h1"
-              info={<Link>Info</Link>}
-              description="AWS AI Content Moderation - UGC demo"
-            >
-              AWS Content Moderation UGC Demo
-              
-            </Header>
-          </SpaceBetween>
-        }
-        content={
-          currentPage === "audios"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
-          currentPage === "overview"?<Overview onStart={handleStart} />:
-          currentPage === "users"?<UserList user={user} />:
-          currentPage === "posts"?<PostHome user={user} />:
-          currentPage === "signup"?<Signup />:
-          currentPage === "livestream"?<LiveStream />:
-          <div/>
-        }
-      >
-    </AppLayout>
+        identity={{
+          href: "#",
+          title: "AWS Content Moderation - UGC demo",
+          logo: {
+            src: logo,
+            alt: "AWS"
+          },
+          onFollow: handleTopClick   
+        }}
+        utilities={[
+          {
+            type: "menu-dropdown",
+            text: user.username,
+            description: user.email,
+            iconName: "user-profile",
+            onItemClick: signOut,
+            items: [
+              { type: "button", id: "signout", text: "Sign out"}
+            ]
+          }
+        ]}
+        i18nStrings={{
+          searchIconAriaLabel: "Search",
+          searchDismissIconAriaLabel: "Close search",
+          overflowMenuTriggerText: "More",
+          overflowMenuTitleText: "All",
+          overflowMenuBackIconAriaLabel: "Back",
+          overflowMenuDismissIconAriaLabel: "Close menu"
+        }}
+      />
+      {currentPage === "livestream"?<LiveStream />:
+        <AppLayout
+          headerSelector="#header"
+          ref={appLayout}
+          contentType="table"
+          navigationOpen={navigationOpen}
+          onNavigationChange={handleNavigationChange}
+          navigation={
+            <Navigation 
+              onFollowHandler={handleHavItemClick}
+              selectedItems={["overview"]}
+              activeHref={activeNavHref}
+              items={ITEMS} 
+            />}
+          breadcrumbs={
+            <BreadcrumbGroup 
+              items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
+            />
+          }
+          header={
+            <SpaceBetween size="l">
+              <Header
+                variant="h1"
+                info={<Link>Info</Link>}
+                description="AWS AI Content Moderation - UGC demo"
+              >
+                AWS Content Moderation UGC Demo
+                
+              </Header>
+            </SpaceBetween>
+          }
+          content={
+            currentPage === "audios"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
+            currentPage === "overview"?<Overview onStart={handleStart} />:
+            currentPage === "users"?<UserList user={user} />:
+            currentPage === "posts"?<PostHome user={user} />:
+            currentPage === "signup"?<Signup />:
+            <div/>
+          }
+        >
+      </AppLayout>
+      }
     </div>
   );
 }

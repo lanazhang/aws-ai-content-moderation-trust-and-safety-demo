@@ -158,6 +158,14 @@ function Signup() {
               {(!init && userNameMessage != null)? <div className="inline_message_severe">User name contains profanity word(s): {userNameMessage}</div> :<div/>}
           </div>
           <div className="form-row">
+              <label className="form__label">Password </label>
+              <input className="form__input" type="password"  id="password" placeholder="Password" value="123"/>
+          </div>
+          <div className="form-row">
+              <label className="form__label">Confirm Password </label>
+              <input className="form__input" type="password" id="confirmPassword" placeholder="Confirm Password" value="123"/>
+          </div>
+          <div className="form-row">
               <label className="form__label">Somthing about yourself </label>
               <textarea rows="4" className="form__input" type="text" id="profile" onChange={handleInputChange} placeholder="Something about yourself" data-tip data-for="profileTip"></textarea>
               {(!init && (profile === null || profile.length === 0))? <div className="inline_message">Profile is required</div> :<div/>}
@@ -182,12 +190,14 @@ function Signup() {
         <div className="header">How to use this page</div>
         <div className="item">
           <div className="title">Provide a username and a description.
-          <div className="txt">The page will moderate the text Comprehend. </div>     
+          <div className="txt">The page will moderate the text using Amazon Comprehend. </div>     
+          <div className="txt">You can try something bad such as username <b>shit-head</b>, description <b>I hate you. Go to hell.</b> </div>     
           </div>
         </div>
         <div className="item">
           <div className="title">Upload a profile image.</div>
           <div className="txt">The page will moderate the profile image using Rekognition. </div>
+          <br/>
         </div>
       </div>
       </div>
