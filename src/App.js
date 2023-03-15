@@ -21,7 +21,7 @@ const ITEMS = [
   { type: 'link', id:"signup", text: 'User Sign Up', href:"#/signup"},
   { type: 'link', id:"posts", text: 'Community Posts', href:"#/posts"},
   { type: 'link', id:"audios", text: 'Audio Chats', href:"#/audios"},
-  { type: 'link', id:"livestream", text: 'Live stream', href:"#/livestream"},
+  { type: 'link', id:"livestream", text: 'Live Stream', href:"#/livestream"},
   { type: 'divider' },
   { type: 'link', id:"overview", text: 'UGC dashboard', href:"#/overview"},
   { type: 'link', id:"users", text: 'Manage Users', href:"#/users"},
@@ -111,48 +111,36 @@ const App = ({ signOut, user }) => {
           overflowMenuDismissIconAriaLabel: "Close menu"
         }}
       />
-      {currentPage === "livestream"?<LiveStream />:
-        <AppLayout
-          headerSelector="#header"
-          ref={appLayout}
-          contentType="table"
-          navigationOpen={navigationOpen}
-          onNavigationChange={handleNavigationChange}
-          navigation={
-            <Navigation 
-              onFollowHandler={handleHavItemClick}
-              selectedItems={["overview"]}
-              activeHref={activeNavHref}
-              items={ITEMS} 
-            />}
-          breadcrumbs={
-            <BreadcrumbGroup 
-              items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
-            />
-          }
-          header={
-            <SpaceBetween size="l">
-              <Header
-                variant="h1"
-                info={<Link>Info</Link>}
-                description="AWS AI Content Moderation - UGC demo"
-              >
-                AWS Content Moderation UGC Demo
-                
-              </Header>
-            </SpaceBetween>
-          }
-          content={
-            currentPage === "audios"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
-            currentPage === "overview"?<Overview onStart={handleStart} />:
-            currentPage === "users"?<UserList user={user} />:
-            currentPage === "posts"?<PostHome user={user} />:
-            currentPage === "signup"?<Signup />:
-            <div/>
-          }
-        >
-      </AppLayout>
-      }
+      <AppLayout
+        headerSelector="#header"
+        ref={appLayout}
+        contentType="table"
+        navigationOpen={navigationOpen}
+        onNavigationChange={handleNavigationChange}
+        navigation={
+          <Navigation 
+            onFollowHandler={handleHavItemClick}
+            selectedItems={["overview"]}
+            activeHref={activeNavHref}
+            items={ITEMS} 
+          />}
+        breadcrumbs={
+          <BreadcrumbGroup 
+            items={[{ "type": 'label', "text": 'Home'}, currentBreadcrumb]}
+          />
+        }
+        toolsHide={true}
+        content={
+          currentPage === "audios"?<AudioList user={user} onItemClick={handleItemClick} onSelectionChange={onSelectionChange}/>:
+          currentPage === "overview"?<Overview onStart={handleStart} />:
+          currentPage === "users"?<UserList user={user} />:
+          currentPage === "posts"?<PostHome user={user} />:
+          currentPage === "signup"?<Signup />:
+          currentPage === "livestream"?<LiveStream />:
+          <div/>
+        }
+      >
+    </AppLayout>
     </div>
   );
 }

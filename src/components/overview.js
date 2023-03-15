@@ -150,7 +150,7 @@ export default () => {
         i18nStrings={{
           detailsValue: "Value",
           detailsPercentage: "Percentage",
-          filterLabel: "Filter text category",
+          filterLabel: "Filter text/audio category",
           filterPlaceholder: "Filter data",
           filterSelectedAriaLabel: "selected",
           detailPopoverDismissAriaLabel: "Dismiss",

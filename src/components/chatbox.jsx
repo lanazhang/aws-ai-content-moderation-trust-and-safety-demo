@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FetchData } from "../resources/data-provider";
-
+import Simulator from "./simulator"
 
 function ChatBox() {
 
@@ -35,13 +35,6 @@ function ChatBox() {
         }
         ]);
     const [message, setMessage] = useState(null);
-    const [simu, setSimu] = useState(
-        [
-            "Can I get your phone number?",
-            "What's your home address?",
-            "How old are you?"
-        ]
-    );
   
     function redact_pii(msg, pii_name, start, end) {
         var ph = '';
@@ -92,23 +85,11 @@ function ChatBox() {
     }
   
     const handleSimulation = (e) => {
-        var ss = simu;
-        var s = ss.pop();
-        setSimu(ss);
-        var m = messages;
-        
-        if (s!=null && s.length > 0)
-        {
-            m.push(
-                {
-                    "message":s,
-                    "from": "gamerpro123",
-                    "redacted": null
-                }
-            );
-            setMessages(m);
+        if(e !== null && e !== undefined && e.from !== undefined) {
+            let ms = Object.assign([], messages);
+            ms.unshift(e);
+            setMessages(ms);
         }
-        handleChange(e);
     }
   
     async function handleClick(e) {
@@ -136,19 +117,18 @@ function ChatBox() {
                     }));
                 }).then(function (data) {
         
-                    console.log(data);
                     var pii_result = parse_pii_response(JSON.parse(data[0].body));
                     var profanity_result = parse_profanity_response(JSON.parse(data[1].body));
                     var toxic_result =  parse_toxic_response(JSON.parse(data[2].body));
         
-                    console.log(">>>>>RESULT", toxic_result, profanity_result, pii_result);
+                    //console.log(">>>>>RESULT", toxic_result, profanity_result, pii_result);
         
                 if (toxic_result.isvalid && profanity_result.isvalid && pii_result.isvalid) {
                         var m = messages;
-                        m.push(
+                        m.unshift(
                             {
                                 "message":message,
-                                "from": "You",
+                                "from": "you",
                                 "redacted": null
                             }
                         )
@@ -161,7 +141,7 @@ function ChatBox() {
                     }
                     else if(!pii_result.isvalid) {
                         m = messages;
-                        m.push(
+                        m.unshift(
                             {
                                 "message":pii_result.redacted_msg,
                                 "from": "You",
@@ -173,7 +153,7 @@ function ChatBox() {
                     }
                     else if(!profanity_result.isvalid) {
                         m = messages;
-                        m.push(
+                        m.unshift(
                             {
                                 "message":profanity_result.redacted_msg,
                                 "from": "You",
@@ -283,10 +263,10 @@ function ChatBox() {
                 if (!results[0].IsPartial) {
 
                     var ms = messages;
-                    ms.push(
+                    ms.unshift(
                         {
                             "message":transcript,
-                            "from": "You",
+                            "from": "you",
                             "redacted": null
                         }
                     );
@@ -392,19 +372,23 @@ function ChatBox() {
             sock.send(emptyBuffer);
         }
         setSock(sock);
-    }    
+    }  
 
     useEffect(() => {
         if (sts === null) {
             getSts();
         }
     });
+
+    function handleClearChat() {
+        setMessages([]);
+    }
   
     return (
         <div className="ChatBox">
             <div className="MessageArea">
             {messages.map((m, i) => (
-                <div className={m.from}>[{m.from}]: {m.message} {m.redacted != null? <label className="moderation">[{m.redacted}]</label>:<label/>}</div>
+                <div><div className={m.from}>{m.from}:</div> {m.message} {m.redacted != null? <label className="moderation">[{m.redacted}]</label>:<label/>}</div>
                 ))
             }
             </div>
@@ -412,7 +396,8 @@ function ChatBox() {
                 {!toxic.isvalid? <div className="inline_message">Toxicity message</div> :<div/>}
                 <textarea className={toxic.isvalid ? 'valid': 'invalid'} onChange={handleChange} value={(message == null?'':message)} onKeyDown={handleClick} placeholder='Do not share personal information for your own safety' />
                 <button id="btnMicrophone" className={microphone?"microphone-off": "microphone-on"} onClick={handleMicrophone}></button>
-                <button id="btnSimu" typee="submit" className="simu" onClick={handleSimulation} disabled={simu.length === 0}>Ask me PII questions</button>
+                <Simulator onSimulation={handleSimulation}></Simulator>
+                <div onClick={handleClearChat} className="clear">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clear chat</div>
             </div>
         </div>
     );

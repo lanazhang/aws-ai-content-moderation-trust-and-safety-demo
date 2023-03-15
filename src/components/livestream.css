@@ -1,11 +1,13 @@
 .livestream {
     position: relative;
-    width: 100%;
+    border:solid 1px black;
+    width: 103%;
+    height: 120%;
 }
 
 .livestream .WebCam {
     position: absolute;
-    bottom: 180px;
+    top: 20%;
     left:30px;
 }
  
@@ -18,7 +20,7 @@
     background-color: red;
     color: rgb(255, 240, 240);
     font-size: bold;
-    bottom: 176px;
+    bottom: 242px;
     left:42px;
     border-radius: 10px;
 }
@@ -36,142 +38,210 @@
 }
 .livestream .bgVideo {
     width: 100%;
-  height: 90%;
+    height: 100%;
 }
-
-
-
-.Container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0 10px;
+.livestream .left {
+    width: 75%;
+    position: relative;
+    display: inline-block;
 }
-
-
-.WebCam button {
-  background-color: crimson;
-  color: #fff;
-  margin-top: 10px;
-  padding: 10px 40px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
+.livestream .right{
+    position: relative;
+    display: inline-block;
+    min-width: 300px;
 }
-
-.ChatBox {
+.livestream .right .pause{
     position: absolute;
-    bottom: 280px;
-    left:30px;
+    text-align: left;
+    top: -32px;
+    left: 10px;
+    background: url("../static/pause.jpg") center;
+    background-size:18%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+.livestream .right .play{
+    position: absolute;
+    text-align: left;
+    top: -32px;
+    left: 10px;
+    background: url("../static/play.jpg") center;
+    background-size:21%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+.livestream .right .ChatBox {
+    display: block;
+    width: 320px;
+    float:right;
+    min-height: 515px;
+    overflow-y: auto;
+    border-top:solid 1px lightgray;
 }
 
-.ChatBox .MessageArea {
-    background-color: rgb(16, 16, 38);
-    opacity: 0.70;
-    border: solid 1px black;
-    color: whitesmoke;
-}
-.ChatBox .MessageArea {
-    position: absolute;
-    left: 15px;
-    bottom: 180px;
-    width: 588px;
-    min-height: 300px;
-    max-height: 600px;
-    border-radius: 4px;
-    padding: 10px;
+.livestream .right .ChatBox .MessageArea {
+    width: 100%;
+    padding:10px;
+    font-size: 14px;
     overflow: auto;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 450px;
 }
 
 .ChatBox .MessageArea .you {
-    display: block;
+    display: inline;
+    font-weight: bold;
+    width:100%;
+    padding-bottom: 10px;
+    color: black;
+}
+.ChatBox .MessageArea .awsome23gammer, .ChatBox .MessageArea .lanaz {
+    display: inline;
+    font-weight: bold;
+    width:100%;
+    padding-bottom: 10px;
+    color: rgb(1, 250, 1);
+}
+.ChatBox .MessageArea .gamerpro123, .ChatBox .MessageArea .supergamer001, .ChatBox .MessageArea .shit-head, .ChatBox .MessageArea .MinD_ContRol {
+    display: inline;
+    font-weight: bold;
+    color: rgb(255, 0, 195);
     width:100%;
     padding-bottom: 10px;
 }
-.ChatBox .MessageArea .awsome23gammer {
-    display: block;
+.ChatBox .MessageArea .gamerpro123, .ChatBox .MessageArea .shit-head, .ChatBox .MessageArea .Ceb {
+    display: inline;
+    font-weight: bold;
+    color: rgb(85, 0, 255);
     width:100%;
     padding-bottom: 10px;
-    color: lightgreen;
 }
-.ChatBox .MessageArea .gamerpro123 {
-    display: block;
-    color: yellow;
+.ChatBox .MessageArea .gamerpro123, .ChatBox .MessageArea .N0tail, .ChatBox .MessageArea .JerAx {
+    display: inline;
+    font-weight: bold;
+    color: red;
     width:100%;
     padding-bottom: 10px;
 }
 .ChatBox .MessageArea .moderation {
     border:0px;
-    color:orange;
+    color:rgb(255, 89, 0);
     font-size: 12px;
 }
 .ChatBox .ChatInput {
     position: absolute;
-    opacity: 0.70;
-    bottom: 120px; 
-    left: 15px;
+    bottom: -3px; 
+    left: 0px;
     font-size: 14px;
-    width: 605px;
+    width: 100%;
 }
 .ChatBox .ChatInput textarea{
     position: relative;
-    width: 100%;
-    border: solid 1px black;
+    width: 87%;
+    margin-left:10px;
+    border:0px;
+    border-radius: 6px;
 }
 .ChatBox .ChatInput .valid{
-    background-color: rgb(16, 16, 38);
-    color: whitesmoke;
-    width: 565px;
+    background-color: rgb(241, 241, 241);
+    padding: 5px;
     outline: none;
 }
 .ChatBox .ChatInput .invalid, .ChatBox .ChatInput .invalid:focus{
-    background-color: rgb(16, 16, 38);
     border:4px solid red;
-    color: whitesmoke;
-    width: 565px;
     outline: none;
     z-index: 101;
 }
 .ChatBox .ChatInput .inline_message{
-    position: absolute;
-    bottom: -15px;
-    left: 460px;
     color: red;
+    float:right;
     font-size: 12px;
     width:105px;
     padding-left: 3px;
     padding-right: 3px;
+    padding-bottom: 2px;
+    margin-right:6px;
+    margin-bottom: -3px;
     background-color: pink;
     border: solid 1px red;
 }
-.ChatBox .ChatInput .simu {
+.simu {
     position: absolute;
-    top:-300px;
-    display: none;
+    display: block;
+    width: 200px;
+    bottom: -35px;
+    right:0px;
+}
+.simu .pausesimu{
+    position: absolute;
+    text-align: left;
+    top: -32px;
+    right: 10px;
+    background: url("../static/pause.jpg") center;
+    background-size:15%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: right;
+    font-size: 14px;
+    cursor: pointer;
+}
+.simu .playsimu{
+    position: absolute;
+    text-align: left;
+    top: -32px;
+    right: 10px;
+    background: url("../static/play.jpg") center;
+    background-size:16%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: right;
+    font-size: 14px;
+    cursor: pointer;
+}
+.clear{
+    position: absolute;
+    text-align: left;
+    top: 60px;
+    left: 10px;
+    background: url("../static/clear.png") center;
+    background-size:22%;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: left;
+    font-size: 14px;
+    cursor: pointer;
 }
 .ChatBox .ChatInput .microphone-on {
     position: absolute;
-    background: url("../static/microphone-on.png") center;
-    background-size:cover;
-    background-color: black;
+    background: url("../static/microphone-on.jpg") center;
+    background-size:80%;
+    background-color: white;
+    background-repeat: no-repeat;
     float:right;
-    right: 17px;
+    right: 0px;
+    bottom:8px;
     width: 30px;
     height: 48px;
     border: 0px;
-    margin: 0px 0px 0px 8px;
 }
 .ChatBox .ChatInput .microphone-off {
     position: absolute;
-    background: url("../static/microphone-off.png") center;
-    background-size:cover;
-    background-color: black;
+    background: url("../static/microphone-off.jpg") center;
+    background-size:80%;
+    background-color: white;
+    background-repeat: no-repeat;
     float:right;
-    right: 17px;
+    right: 0px;
+    bottom:8px;
     width: 30px;
     height: 48px;
     border: 0px;
-    margin: 0px 0px 0px 8px;
 }

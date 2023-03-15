@@ -1,6 +1,7 @@
 import React from 'react';
 import './livestream.css'
 import { FetchData } from "../resources/data-provider";
+import { Button } from '@cloudscape-design/components';
 import ReactPlayer from "react-player";
 import Webcam from "react-webcam";
 import ChatBox from "./chatbox"
@@ -19,8 +20,13 @@ class LiveStream extends React.Component {
         this.webCamRef = React.createRef();
         this.state = {
             videoModerationLabels: [],
-            webCamModerationLabels: []
+            webCamModerationLabels: [],
+            videoPause: false
         }
+    }
+
+    handleVideoPause = () => {
+        this.setState({videoPause: !this.state.videoPause});
     }
 
     componentDidMount() {
@@ -81,33 +87,40 @@ class LiveStream extends React.Component {
     render() {
         return (
             <div className="livestream">
-                {this.state.videoModerationLabels !== null && this.state.videoModerationLabels.length > 0 ? 
-                    <div className="videoModeration">
-                        {this.state.videoModerationLabels.map((l, i) =>
-                            <p>{l}</p>
-                        )}
+                <div className='left'>
+                    {this.state.videoModerationLabels !== null && this.state.videoModerationLabels.length > 0 ? 
+                        <div className="videoModeration">
+                            {this.state.videoModerationLabels.map((l, i) =>
+                                <p>{l}</p>
+                            )}
+                        </div>
+                    :<div/>}
+                    <ReactPlayer id="myVideo" 
+                        className="bgVideo" 
+                        ref={this.videoRef} 
+                        loop={true}
+                        playing={!this.state.videoPause}
+                        width="100%"
+                        height="90%"
+                        url='https://d2m6vcpsgt3gn5.cloudfront.net/ugc-demo-web/images/media-demo.mp4' />
+                    {this.state.webCamModerationLabels !== null && this.state.webCamModerationLabels.length > 0 ? 
+                        <div className="webCamModeration">{this.state.webCamModerationLabels[0]}</div>:<div/>
+                    }
+                    <Webcam 
+                        ref={this.webCamRef}
+                        mirrored={true} 
+                        className="WebCam" 
+                        width={300} height={200} 
+                        screenshotFormat="image/jpeg"
+                    >
+                    </Webcam>
+                </div>
+                <div className='right'>
+                    <div onClick={this.handleVideoPause} className={this.state.videoPause?"play":"pause"} >
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!this.state.videoPause?"Pasuse Video":"Play Video"}
                     </div>
-                :<div/>}
-                <ReactPlayer id="myVideo" 
-                    className="bgVideo" 
-                    ref={this.videoRef} 
-                    loop={true}
-                    playing={true}
-                    width="100%"
-                    height="90%"
-                    url='https://d2m6vcpsgt3gn5.cloudfront.net/ugc-demo-web/images/media-demo.mp4' />
-                {this.state.webCamModerationLabels !== null && this.state.webCamModerationLabels.length > 0 ? 
-                    <div className="webCamModeration">{this.state.webCamModerationLabels[0]}</div>:<div/>
-                }
-                <ChatBox id="chatbox"/>
-                <Webcam 
-                    ref={this.webCamRef}
-                    mirrored={true} 
-                    className="WebCam" 
-                    width={300} height={200} 
-                    screenshotFormat="image/jpeg"
-                >
-                </Webcam>
+                    <ChatBox id="chatbox"/>
+                </div>
 
             </div>
         );
