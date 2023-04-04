@@ -54,6 +54,7 @@
     display: inline-block;
     border-radius: 50%;
     width: 50px;
+    padding: 0px;
 }
 .profile_name {
     display: inline-block;

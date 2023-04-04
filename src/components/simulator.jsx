@@ -21,13 +21,15 @@ class Simulator extends React.Component {
         let counter = 0;
         setInterval(() => {
             if (this.state.simuFlag) {
-                if (counter >= chats.length)
+                setTimeout(() => {
+                    if (counter >= chats.length)
                     counter = 0;
-                this.props.onSimulation(chats[counter]);
-                counter ++;
+                    this.props.onSimulation(chats[counter]);
+                    counter ++;
+                }, Math.floor(Math.random() * 5000));
                 //console.log(s);
             }
-        }, 1500);
+        }, 1000);
     }
 
     render() {

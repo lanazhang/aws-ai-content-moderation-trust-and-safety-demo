@@ -29,8 +29,8 @@ function ChatBox() {
 
     const [messages, setMessages] = useState([
         {
-            "from": "gamerpro123",
-            "message": "Yooo what's up? Wanna play a game?",
+            "from": "demo",
+            "message": "Welcome to the chat room",
             "redacted": null
         }
         ]);
@@ -392,6 +392,7 @@ function ChatBox() {
                 ))
             }
             </div>
+            <br/>
             <div className="ChatInput">
                 {!toxic.isvalid? <div className="inline_message">Toxicity message</div> :<div/>}
                 <textarea className={toxic.isvalid ? 'valid': 'invalid'} onChange={handleChange} value={(message == null?'':message)} onKeyDown={handleClick} placeholder='Do not share personal information for your own safety' />
