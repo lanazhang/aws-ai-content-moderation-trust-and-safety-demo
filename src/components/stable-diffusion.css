@@ -1,0 +1,37 @@
+.stablediffusion {
+    margin: 10px;
+}
+
+.stablediffusion .Prompt {
+    width: 90%;
+}
+
+.stablediffusion .Submit {
+    margin-top: 10px;
+}
+
+.stablediffusion .Clear {
+    margin-left: 5px;
+}
+
+.stablediffusion .alert {
+    padding-top: 10px;
+}
+
+.stablediffusion .image {
+    padding-top: 10px;
+}
+
+.stablediffusion .image_blur {
+    padding-top: 10px;
+    transition: filter 1s linear;
+    filter: blur(25px);
+}
+
+.stablediffusion .Unblur {
+    position: absolute;
+    display: block;
+    float: center;
+    top: -510px;
+    left: -450px;
+}

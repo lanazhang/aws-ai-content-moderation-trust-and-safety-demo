@@ -9,6 +9,7 @@ import { AppLayout } from '@cloudscape-design/components';
 import { AudioList } from "./components/audio-list";
 import { PostHome } from "./components/post-home";
 import { UserList } from "./components/user-list";
+import StableDiffusion from "./components/stable-diffusion";
 import LiveStream from "./components/livestream";
 import Signup from "./components/signup";
 import TopNavigation from "@cloudscape-design/components/top-navigation";
@@ -25,6 +26,8 @@ const ITEMS = [
   { type: 'divider' },
   { type: 'link', id:"overview", text: 'UGC dashboard', href:"#/overview"},
   { type: 'link', id:"users", text: 'Manage Users', href:"#/users"},
+  { type: 'divider' },
+  { type: 'link', id:"stablediffusion", text: 'Stable Diffusion', href:"#/stablediffusion"},
   { type: 'divider' },
   {
     type: 'link', text: 'Documentation', external: true,
@@ -137,6 +140,7 @@ const App = ({ signOut, user }) => {
           currentPage === "posts"?<PostHome user={user} />:
           currentPage === "signup"?<Signup />:
           currentPage === "livestream"?<LiveStream />:
+          currentPage === "stablediffusion"?<StableDiffusion />:
           <div/>
         }
       >

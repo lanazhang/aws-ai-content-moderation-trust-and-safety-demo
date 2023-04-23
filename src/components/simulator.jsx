@@ -36,7 +36,7 @@ class Simulator extends React.Component {
         return (
             <div className="simu">
                 <div onClick={this.handleSimulation} className={!this.state.simuFlag?"playsimu":"pausesimu"} >
-                    {this.state.simuFlag?"Pasuse Simulation":"Start Simulation"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {this.state.simuFlag?"Pause Simulation":"Start Simulation"}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         );

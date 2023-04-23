@@ -49,7 +49,7 @@ class LiveStream extends React.Component {
                     },
                     "Moderation": true,
                     "Label": false,
-                    "Text": true
+                    "Text": false
                 })
                 .then((data) => {
                     var resp = JSON.parse(data.body);
@@ -160,7 +160,7 @@ class LiveStream extends React.Component {
                 </div>
                 <div className='right'>
                     <div onClick={this.handleVideoPause} className={this.state.videoPause?"play":"pause"} >
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!this.state.videoPause?"Pasuse Video":"Play Video"}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!this.state.videoPause?"Pause Video":"Play Video"}
                     </div>
                     <ChatBox id="chatbox"/>
                 </div>
