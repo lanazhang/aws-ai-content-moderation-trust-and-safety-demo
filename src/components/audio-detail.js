@@ -140,8 +140,8 @@ function AudioDetail ({jobName, onBack}) {
           <div>
             <Link external
               externalIconAriaLabel="Download the transcrip JSON file" 
-              href={job!==null?job.output_s3_pre_signed_url:""}>
-              {job!==null?job.output_s3_uri:""}
+              href={job!==null?job.output_s3_uri:""}>
+              Service-managed S3 bucket
             </Link>
           </div>
         </div>
