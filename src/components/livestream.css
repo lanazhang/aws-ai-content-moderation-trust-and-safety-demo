@@ -20,7 +20,8 @@
     background-color: red;
     color: rgb(255, 240, 240);
     font-size: bold;
-    bottom: 412px;
+    top: 20%;
+    margin-top: -30px;
     left:42px;
     border-radius: 10px;
 }
@@ -128,7 +129,7 @@
     position: relative;
     display: inline-block;
     min-width: 300px;
-    height:80%;
+    height:650px;
 }
 .livestream .right .pause{
     position: absolute;

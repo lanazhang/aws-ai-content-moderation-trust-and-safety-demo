@@ -40,6 +40,7 @@ const App = ({ signOut, user }) => {
   const [currentBreadcrumb, setCurrentBreadcrumb] = useState({"id":"overview", "text": "Overview" });
   const [navigationOpen, setNavigationOpen] = useState(true);
   const [activeNavHref, setActiveNavHref] = useState("#/overview");
+  const [displayTopMenu, setDisplayTopMenu] = useState(window.self == window.top);
   const appLayout = useRef();
 
   const [selectedItems, setSelectedItems] = useState([]); 
@@ -83,6 +84,7 @@ const App = ({ signOut, user }) => {
 
     return (
       <div>
+        {displayTopMenu?
       <TopNavigation      
         identity={{
           href: "#",
@@ -113,7 +115,7 @@ const App = ({ signOut, user }) => {
           overflowMenuBackIconAriaLabel: "Back",
           overflowMenuDismissIconAriaLabel: "Close menu"
         }}
-      />
+      />:<div/>}
       <AppLayout
         headerSelector="#header"
         ref={appLayout}
